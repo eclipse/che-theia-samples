@@ -36,13 +36,13 @@ module.exports = {
     },
     output: {
         filename: 'diagnostics-plugin-frontend-plugin.js',
-        
+
         libraryTarget: "var",
         library: "theia_diagnostics_plugin_plugin",
-                
+
         path: path.resolve(__dirname, 'dist')
     },
     externals: {
-		"@theia/plugin": "theia"
+        "@theia/plugin": "theia.theia_diagnostics_plugin_plugin"
 	}
 };
