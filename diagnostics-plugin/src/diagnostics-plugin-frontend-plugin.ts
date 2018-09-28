@@ -15,19 +15,12 @@ import * as theia from '@theia/plugin';
 
 let autoDiagnostics: boolean = false;
 
-const disposables: theia.Disposable[] = [];
-export function stop() {
-    for (const disposable of disposables) {
-        disposable.dispose();
-    }
-}
-
-export function start() {
+export function start(context: theia.PluginContext) {
     const warningsDiagnosticsCollection = theia.languages.createDiagnosticCollection('test-warnings');
     const errorsDiagnosticsCollection = theia.languages.createDiagnosticCollection('test-errors');
 
-    disposables.push(warningsDiagnosticsCollection);
-    disposables.push(errorsDiagnosticsCollection);
+    context.subscriptions.push(warningsDiagnosticsCollection);
+    context.subscriptions.push(errorsDiagnosticsCollection);
 
     // Warnings
 
@@ -36,7 +29,7 @@ export function start() {
         label: "Add warning diagnostics"
     };
 
-    disposables.push(
+    context.subscriptions.push(
         theia.commands.registerCommand(addWarningDiagnostics, (...args: any[]) => {
             if (theia.window.activeTextEditor) {
                 const editorResourceUri = theia.window.activeTextEditor.document.uri;
@@ -54,7 +47,7 @@ export function start() {
         label: "Remove warning diagnostics"
     };
 
-    disposables.push(
+    context.subscriptions.push(
         theia.commands.registerCommand(removeWarningDiagnostics, (...args: any[]) => {
             if (theia.window.activeTextEditor) {
                 const editorResourceUri = theia.window.activeTextEditor.document.uri;
@@ -74,7 +67,7 @@ export function start() {
         label: "Add error diagnostics"
     };
 
-    disposables.push(
+    context.subscriptions.push(
         theia.commands.registerCommand(addErrorDiagnostics, (...args: any[]) => {
             if (theia.window.activeTextEditor) {
                 const editorResourceUri = theia.window.activeTextEditor.document.uri;
@@ -92,7 +85,7 @@ export function start() {
         label: "Remove error diagnostics"
     };
 
-    disposables.push(
+    context.subscriptions.push(
         theia.commands.registerCommand(removeErrorDiagnostics, (...args: any[]) => {
             if (theia.window.activeTextEditor) {
                 const editorResourceUri = theia.window.activeTextEditor.document.uri;
@@ -107,7 +100,7 @@ export function start() {
 
     // Events
 
-    disposables.push(
+    context.subscriptions.push(
         theia.languages.onDidChangeDiagnostics((event: theia.DiagnosticChangeEvent) => {
             let message = 'Diagnostics changed for: ';
             for (const uri of event.uris) {
@@ -126,7 +119,7 @@ export function start() {
         autoDiagnostics = !autoDiagnostics;
     });
 
-    disposables.push(
+    context.subscriptions.push(
         theia.workspace.onDidChangeTextDocument((event: theia.TextDocumentChangeEvent) => {
             if (autoDiagnostics && theia.window.activeTextEditor) {
                 const editorResourceUri = theia.window.activeTextEditor.document.uri;
@@ -172,4 +165,8 @@ function createDiagnosticsForWord(word: string, severity: theia.DiagnosticSeveri
         return diagnostics;
     }
     return [];
+}
+
+export function stop() {
+
 }
