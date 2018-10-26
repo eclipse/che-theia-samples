@@ -177,16 +177,19 @@ export class FtpExplorer {
 
     public ftpModel: FtpModel;
 
-    constructor() {
+    constructor(context: theia.PluginContext) {
         this.ftpModel = new FtpModel('mirror.switch.ch', 'anonymous', 'anonymous@anonymous.de');
         const treeDataProvider = new FtpTreeDataProvider(this.ftpModel);
         // theia.workspace.registerTextDocumentContentProvider('ftp', treeDataProvider)
 
         this.ftpViewer = theia.window.createTreeView('ftpExplorer', { treeDataProvider });
 
-        theia.commands.registerCommand(ftpExplorerRefresh, () => treeDataProvider.refresh());
-        theia.commands.registerCommand(ftpExplorerOpenFtpResource, resource => this.openResource(resource));
-        theia.commands.registerCommand(ftpExplorerRevealResource, () => this.reveal());
+        context.subscriptions.push(
+            theia.commands.registerCommand(ftpExplorerRefresh, () => treeDataProvider.refresh()));
+        context.subscriptions.push(
+            theia.commands.registerCommand(ftpExplorerOpenFtpResource, resource => this.openResource(resource)));
+        context.subscriptions.push(
+            theia.commands.registerCommand(ftpExplorerRevealResource, () => this.reveal()));
     }
 
     private openResource(resource: theia.Uri): void {

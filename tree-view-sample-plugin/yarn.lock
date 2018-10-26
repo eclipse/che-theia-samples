@@ -14,14 +14,14 @@
     yargs "12.0.1"
 
 "@theia/plugin@next":
-  version "0.4.0-next.c2939ab3"
-  resolved "https://registry.yarnpkg.com/@theia/plugin/-/plugin-0.4.0-next.c2939ab3.tgz#da8393886c8cd9ff4893699a80a9dddbc9bf6700"
+  version "0.4.0-next.19d2d6c5"
+  resolved "https://registry.yarnpkg.com/@theia/plugin/-/plugin-0.4.0-next.19d2d6c5.tgz#f47b56e84ea4fcb91cd4a83303696f7425a92296"
 
 "@types/events@*":
   version "1.2.0"
   resolved "http://registry.npmjs.org/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
 
-"@types/ftp@^0.3.29":
+"@types/ftp@^0.3.10":
   version "0.3.29"
   resolved "http://registry.npmjs.org/@types/ftp/-/ftp-0.3.29.tgz#661238587b9ec653c71256bd2138545be7ba7393"
   dependencies:
@@ -263,8 +263,8 @@ commander@^2.19.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
 
 commandpost@^1.0.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/commandpost/-/commandpost-1.3.0.tgz#e0654e4933abf58406c7d3b77ce747083da178c4"
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/commandpost/-/commandpost-1.4.0.tgz#89218012089dfc9b67a337ba162f15c88e0f1048"
 
 component-emitter@^1.2.1:
   version "1.2.1"

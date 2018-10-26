@@ -51,7 +51,7 @@
     "typescript": "2.9.2"
   },
   "dependencies": {
-    "@types/ftp": "^0.3.29",
+    "@types/ftp": "^0.3.10",
     "ftp": "^0.3.10"
   },
   "scripts": {

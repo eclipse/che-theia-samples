@@ -9,18 +9,10 @@ import * as theia from '@theia/plugin';
 import { FtpExplorer } from './ftp-explorer';
 import { Comments } from './comments';
 
-const disposables: theia.Disposable[] = [];
-
-export function start() {
-    new Comments(disposables);
-    new FtpExplorer();
+export function start(context: theia.PluginContext) {
+    new Comments(context);
+    new FtpExplorer(context);
 }
 
 export function stop() {
-    while (disposables.length) {
-        const disposable = disposables.pop();
-        if (disposable) {
-            disposable.dispose();
-        }
-    }
 }

@@ -6,8 +6,8 @@ comments.set('Ann', ['Great plugin!', 'Can you share the link to this example?']
 comments.set('Yevhen', ['Cleanup your code please']);
 comments.set('Sun', ['Do not forget about docs']);
 
-const ON_DID_SELECT_USER = 'comments-tree-on-did-select-user';
-const ON_DID_SELECT_COMMENT = 'comments-tree-on-did-select-comment';
+const ON_DID_SELECT_USER = 'treeViewSample.onDidSelectUser';
+const ON_DID_SELECT_COMMENT = 'treeViewSample.onDidSelectComment';
 
 export class Comments {
 
@@ -16,7 +16,7 @@ export class Comments {
 
     selectedUser: string | undefined;
 
-    constructor(public disposables: theia.Disposable[]) {
+    constructor(context: theia.PluginContext) {
         this.treeDataProvider = new TestDataProvider();
         this.tree = theia.window.createTreeView('comments', { treeDataProvider: this.treeDataProvider });
 
@@ -28,25 +28,29 @@ export class Comments {
             // handle collapsing
         });
 
-        theia.commands.registerCommand({
-            id: 'tree-view-add-user',
-            label: '[TreeView] Add User'
-        }, args => this.addUser(args));
+        context.subscriptions.push(
+            theia.commands.registerCommand({
+                id: 'treeViewSample.addUser',
+                label: '[TreeView] Add User'
+            }, args => this.addUser(args)));
 
-        theia.commands.registerCommand({
-            id: 'tree-view-add-comment',
-            label: '[TreeView] Add Comment'
-        }, args => this.addComment(args));
+        context.subscriptions.push(
+            theia.commands.registerCommand({
+                id: 'treeViewSample.addComment',
+                label: '[TreeView] Add Comment'
+            }, args => this.addComment(args)));
 
-        theia.commands.registerCommand({
-            id: ON_DID_SELECT_USER,
-            label: 'On did select user'
-        }, args => this.onDidSelectUser(args));
+        context.subscriptions.push(
+            theia.commands.registerCommand({
+                id: ON_DID_SELECT_USER,
+                label: 'On did select user'
+            }, args => this.onDidSelectUser(args)));
 
-        theia.commands.registerCommand({
-            id: ON_DID_SELECT_COMMENT,
-            label: 'On did select comment'
-        }, args => this.onDidSelectComment(args));
+        context.subscriptions.push(
+            theia.commands.registerCommand({
+                id: ON_DID_SELECT_COMMENT,
+                label: 'On did select comment'
+            }, args => this.onDidSelectComment(args)));
     }
 
     onDidSelectUser(...args: any[]) {
