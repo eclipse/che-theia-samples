@@ -5,7 +5,7 @@
     "theia-plugin"
   ],
   "version": "0.0.1",
-  "license": "[object Object]",
+  "license": "EPL-2.0",
   "files": [
     "src"
   ],

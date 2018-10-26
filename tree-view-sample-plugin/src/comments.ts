@@ -14,7 +14,7 @@ export class Comments {
     treeDataProvider: TestDataProvider;
     tree: theia.TreeView<string>;
 
-    selectedUser: string | undefined = undefined;
+    selectedUser: string | undefined;
 
     constructor(public disposables: theia.Disposable[]) {
         this.treeDataProvider = new TestDataProvider();
