@@ -11,4 +11,4 @@ The Plug-in contributes 2 types of lenses:
 - with an associated command;
 - without an associated command - such link will be resolved.
 
-![Demo Document Link Provider](demo.gif)
+![Demo Code Lens Provider](demo.gif)
