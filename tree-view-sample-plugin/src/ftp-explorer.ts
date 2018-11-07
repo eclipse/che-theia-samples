@@ -49,7 +49,10 @@ export class FtpModel {
 
                     client.end();
 
-                    return c(this.sort(list.map(entry => ({ resource: theia.Uri.parse(`ftp://${this.host}///${entry.name}`), isDirectory: entry.type === 'd' }))));
+                    return c(this.sort(list.map(entry => ({
+                        resource: theia.Uri.parse(`ftp://${this.host}/${entry.name}`),
+                        isDirectory: entry.type === 'd'
+                    }))));
                 });
             });
         });
@@ -65,7 +68,10 @@ export class FtpModel {
 
                     client.end();
 
-                    return c(this.sort(list.map(entry => ({ resource: theia.Uri.parse(`${node.resource.fsPath}/${entry.name}`), isDirectory: entry.type === 'd' }))));
+                    return c(this.sort(list.map(entry => ({
+                        resource: theia.Uri.parse(`ftp://${this.host}${node.resource.fsPath}/${entry.name}`),
+                        isDirectory: entry.type === 'd'
+                    }))));
                 });
             });
         });
@@ -88,7 +94,7 @@ export class FtpModel {
     public getContent(resource: theia.Uri): Promise<string> {
         return this.connect().then(client => {
             return new Promise<string>((c, e) => {
-                client.get(resource.path.substr(2), (err, stream) => {
+                client.get(resource.path, (err, stream) => {
                     if (err) {
                         return e(err);
                     }
@@ -112,8 +118,7 @@ export class FtpModel {
 
 }
 
-// Implement theia.TextDocumentContentProvider intreface and uncomment provideTextDocumentContent
-export class FtpTreeDataProvider implements theia.TreeDataProvider<FtpNode> {
+export class FtpTreeDataProvider implements theia.TreeDataProvider<FtpNode>, theia.TextDocumentContentProvider {
 
     private _onDidChangeTreeData: theia.EventEmitter<any> = new theia.EventEmitter<any>();
     readonly onDidChangeTreeData: theia.Event<any> = this._onDidChangeTreeData.event;
@@ -151,9 +156,9 @@ export class FtpTreeDataProvider implements theia.TreeDataProvider<FtpNode> {
 
     }
 
-    // public provideTextDocumentContent(uri: theia.Uri, token: theia.CancellationToken): theia.ProviderResult<string> {
-    //     return this.model.getContent(uri).then(content => content);
-    // }
+    public provideTextDocumentContent(uri: theia.Uri, token: theia.CancellationToken): theia.ProviderResult<string> {
+        return this.model.getContent(uri).then(content => content);
+    }
 }
 
 const ftpExplorerRefresh: theia.Command = {
@@ -180,20 +185,23 @@ export class FtpExplorer {
     constructor(context: theia.PluginContext) {
         this.ftpModel = new FtpModel('mirror.switch.ch', 'anonymous', 'anonymous@anonymous.de');
         const treeDataProvider = new FtpTreeDataProvider(this.ftpModel);
-        // theia.workspace.registerTextDocumentContentProvider('ftp', treeDataProvider)
+        theia.workspace.registerTextDocumentContentProvider('ftp', treeDataProvider)
 
         this.ftpViewer = theia.window.createTreeView('ftpExplorer', { treeDataProvider });
 
         context.subscriptions.push(
             theia.commands.registerCommand(ftpExplorerRefresh, () => treeDataProvider.refresh()));
         context.subscriptions.push(
-            theia.commands.registerCommand(ftpExplorerOpenFtpResource, resource => this.openResource(resource)));
+            theia.commands.registerCommand(ftpExplorerOpenFtpResource, args => this.openResource(args)));
         context.subscriptions.push(
             theia.commands.registerCommand(ftpExplorerRevealResource, () => this.reveal()));
     }
 
-    private openResource(resource: theia.Uri): void {
-        theia.workspace.openTextDocument(resource);
+    private openResource(args: any[]): void {
+        if (args && args.length > 0) {
+            const resource: theia.Uri = args[0] as theia.Uri;
+            theia.workspace.openTextDocument(resource);
+        }
     }
 
     private async reveal(): Promise<void> {
