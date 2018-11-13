@@ -1,10 +1,14 @@
 import * as theia from '@theia/plugin';
 
 const comments: Map<string, string[]> = new Map<string, string[]>();
-
 comments.set('Ann', ['Great plugin!', 'Can you share the link to this example?']);
 comments.set('Yevhen', ['Cleanup your code please']);
 comments.set('Sun', ['Do not forget about docs']);
+
+const gitHubProfiles: Map<string, string> = new Map<string, string>();
+gitHubProfiles.set('Ann', 'https://github.com/ashumilova');
+gitHubProfiles.set('Yevhen', 'https://github.com/evidolob');
+gitHubProfiles.set('Sun', 'https://github.com/sunix');
 
 const ON_DID_SELECT_USER = 'treeViewSample.onDidSelectUser';
 const ON_DID_SELECT_COMMENT = 'treeViewSample.onDidSelectComment';
@@ -33,6 +37,12 @@ export class Comments {
                 id: 'treeViewSample.addUser',
                 label: '[TreeView] Add User'
             }, args => this.addUser(args)));
+
+        context.subscriptions.push(
+            theia.commands.registerCommand({
+                id: 'treeViewSample.addProfile',
+                label: '[TreeView] Add Profile'
+            }, args => this.addUserProfile(args)));
 
         context.subscriptions.push(
             theia.commands.registerCommand({
@@ -95,7 +105,7 @@ export class Comments {
     addComment(...args: any[]) {
         if (this.selectedUser) {
             theia.window.showInputBox({
-                prompt: 'Type comment added to user',
+                prompt: 'Enter new comment',
                 placeHolder: 'Comment'
             }).then(value => {
                 if (value) {
@@ -108,6 +118,20 @@ export class Comments {
                             this.tree.reveal(value);
                         }, 100);
                     }
+                }
+            });
+        }
+    }
+
+    addUserProfile(...args: any[]) {
+        if (this.selectedUser) {
+            theia.window.showInputBox({
+                prompt: 'Enter user profile',
+                placeHolder: 'User Profile'
+            }).then(value => {
+                if (value) {
+                    gitHubProfiles.set(this.selectedUser!, value);
+                    this.treeDataProvider.sendDataChanged();
                 }
             });
         }
@@ -132,8 +156,9 @@ export class TestDataProvider implements theia.TreeDataProvider<string> {
      */
     getTreeItem(element: string): theia.TreeItem | PromiseLike<theia.TreeItem> {
         if (comments.has(element)) {
+            let gitLink = gitHubProfiles.get(element);
             return Promise.resolve({
-                label: element,
+                label: element + (gitLink ? ` [GitHub](${gitLink})` : ''),
                 iconPath: 'fa-user medium-yellow',
                 command: {
                     id: ON_DID_SELECT_USER,
