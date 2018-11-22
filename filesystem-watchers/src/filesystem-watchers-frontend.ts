@@ -3,7 +3,7 @@
  *
  * Provides commands for
  *   - subscribing for file system events:
- *      * creatin / updating / deleting of C++ files (h, hpp, c, cpp) inside all src directories for all workspace folders
+ *      * creating / updating / deleting of C++ files (h, hpp, c, cpp) inside all src directories for all workspace folders
  *      * creating / deleting of file with name package.json (location inside workspace doesn't matter) for the first workspace folder only
  *      * updating any typescript or javascript file for all workspace folders
  *   - unsubscribing from file system events
