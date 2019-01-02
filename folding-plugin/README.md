@@ -8,4 +8,4 @@ It contains example of how to register (`FoldingRangeProvider`)[https://github.c
 
 The plug-in contributes a custom language ID `foldLang` and defines several folding regions for `sample/document.fold`.
 
-[Demo Folding Range Provider](demo.gif)
+![Demo Folding Range Provider](demo.gif)
