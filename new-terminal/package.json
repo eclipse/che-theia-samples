@@ -6,7 +6,6 @@
       ],
       "version": "0.0.1",
       "license": "none",
-      
       "files": [
         "src"
       ],
@@ -22,16 +21,13 @@
         "clean": "rimraf lib",
         "format-code": "tsfmt -r",
         "watch": "tsc -watch",
-        "compile": "tsc", 
+        "compile": "tsc",
         "build": "yarn run format-code && yarn run compile && theia:plugin pack"
       },
       "engines": {
         "theiaPlugin": "next"
       },
       "theiaPlugin": {
-          
-          
-            "backend": "lib/new-terminal-backend.js"
-          
+        "backend": "lib/new-terminal-backend.js"
       }
 }
