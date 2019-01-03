@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "npmClient": "yarn",
+  "useWorkspaces": false,
+  "command": {
+    "run": {
+      "stream": true
+    }
+  },
+  "packages": [
+    "samples/*"
+  ]
+}

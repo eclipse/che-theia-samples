@@ -1,0 +1,11 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.8.1"
+  },
+  "scripts": {
+    "prepare": "yarn bootstrap && lerna run prepare",
+    "bootstrap": "lerna bootstrap --ignore-scripts"
+  }
+}
