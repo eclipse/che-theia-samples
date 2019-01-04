@@ -11,27 +11,45 @@
 
 import * as theia from '@theia/plugin';
 
+const globalKeysToTrack = ['global-value'];
+const localKeysToTrack = ['local-value'];
+
 export function start(context: theia.PluginContext) {
 
-    console.log('On start: global value by "test" key is: ', context.globalState.get('test'));
-    console.log('On start: workspace local value by "test" key is: ', context.workspaceState.get('test'));
+    const outputChannel: theia.OutputChannel = theia.window.createOutputChannel('key-value-storage-log');
+    outputChannel.clear();
+    outputChannel.show();
 
     context.subscriptions.push(
         theia.workspace.onDidChangeWorkspaceFolders((event: theia.WorkspaceFoldersChangeEvent) => {
-            console.log('Workspace changed:', event);
-
-            console.log('On workspace changed: global value by "test" key is: ', context.globalState.get('test'));
-            console.log('On workspace changed: workspace local value by "test" key is: ', context.workspaceState.get('test'));
+            console.log('========== Workspace changed:', event);
+            outputChannel.appendLine('========== Workspace changed');
+            printTrackedValues();
         })
     );
 
-    const AddObjectsAsValuesCommand = {
-        id: 'plugin-state-set-object-value',
-        label: "Plugin state: set object values to test key"
+    const printValuesCommand = {
+        id: 'plugin-key-value-storage-show-data',
+        label: "Plugin state: print values"
     };
-    context.subscriptions.push(theia.commands.registerCommand(AddObjectsAsValuesCommand, (...args: any[]) => {
-        context.globalState.update('test', { 'field1': 'value1', 'field2': 64, 'obj': { 'sub1': 1, 'sub2': 'stringv' } });
-        context.workspaceState.update('test', { 'wsfield1': 'value1', 'wsfield2': 64, 'ws-obj': { 'sub1': 1, 'sub2': 'stringv' } });
+    context.subscriptions.push(theia.commands.registerCommand(printValuesCommand, (...args: any[]) => {
+        printTrackedValues();
+        outputChannel.show();
+    }));
+
+    const addObjectsAsValuesCommand = {
+        id: 'plugin-state-set-objects',
+        label: "Plugin state: add object values to test keys"
+    };
+    context.subscriptions.push(theia.commands.registerCommand(addObjectsAsValuesCommand, (...args: any[]) => {
+        const obj1 = { 'field1': 'value1', 'field2': 64, 'obj': { 'sub1': 1, 'sub2': 'stringv' } };
+        const obj2 = { 'wsfield1': 'value1', 'wsfield2': 64, 'ws-obj': { 'sub1': 1, 'sub2': 'stringv' } };
+
+        context.globalState.update('test', obj1);
+        context.workspaceState.update('test', obj2);
+
+        printTrackedValues();
+        outputChannel.show();
     }));
 
     // Manual set / get / delete
@@ -58,6 +76,8 @@ export function start(context: theia.PluginContext) {
             context.globalState.update(key, value);
             showUpdatedMessage(key, value);
         }
+
+        printTrackedValues();
     }));
 
     const deleteGlobalCommand = {
@@ -94,6 +114,8 @@ export function start(context: theia.PluginContext) {
             context.workspaceState.update(key, value);
             showUpdatedMessage(key, value);
         }
+
+        printTrackedValues();
     }));
 
     const deleteWorkspaceLocalCommand = {
@@ -131,6 +153,20 @@ export function start(context: theia.PluginContext) {
         const message = 'Value by key "' + key + '" has been deleted';
         console.log(message);
         theia.window.showInformationMessage(message);
+    }
+
+    function printTrackedValues(): void {
+        const currentTime = new Date();
+        outputChannel.appendLine('----------] ' + currentTime.getHours() + ':'
+            + currentTime.getMinutes() + ':' + currentTime.getSeconds() + ' [----------');
+
+        for (let k of globalKeysToTrack) {
+            outputChannel.appendLine(k + ' = ' + context.globalState.get(k));
+        }
+
+        for (let k of localKeysToTrack) {
+            outputChannel.appendLine(k + ' = ' + context.workspaceState.get(k));
+        }
     }
 }
 
