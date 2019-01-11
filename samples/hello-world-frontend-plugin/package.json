@@ -1,11 +1,11 @@
 {
-  "name": "hello-world-frontend-plugin",
+  "name": "@eclipse-che/hello-world-frontend-plugin",
   "publisher": "theia",
   "keywords": [
     "theia-plugin"
   ],
   "version": "0.0.1",
-  "license": "none",
+  "license": "EPL-2.0",
   "files": [
     "src"
   ],

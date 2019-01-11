@@ -7,7 +7,7 @@ import * as theia from '@theia/plugin';
 
 export function start(context: theia.PluginContext) {
     const informationMessageTestCommand = {
-        id: 'hello-world-example-generated',
+        id: 'hello-world-frontend-example-generated',
         label: "Hello World"
     };
     context.subscriptions.push(theia.commands.registerCommand(informationMessageTestCommand, (...args: any[]) => {
