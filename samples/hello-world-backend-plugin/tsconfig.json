@@ -10,10 +10,7 @@
         "target": "es5",
         "lib": [
             "es6",
-            
-            
             "webworker"
-            
         ],
         "sourceMap": true,
         "rootDir": "src",
