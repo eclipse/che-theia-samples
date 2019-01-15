@@ -1,0 +1,29 @@
+Hit F1 to bring up the Command Palette
+Type 'fold'
+Choose 'Fold All Block Comments' or 'Fold All Regions'
+
+comment1
+comment1
+comment1
+
+unfoldable text
+unfoldable text
+unfoldable textfold
+
+comment2
+comment2
+comment2
+comment2
+comment2
+
+foldable text
+foldable text
+foldable text
+
+region1
+region1
+region1
+
+region2
+region2
+region2
