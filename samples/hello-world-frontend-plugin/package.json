@@ -1,6 +1,6 @@
 {
   "name": "@eclipse-che/hello-world-frontend-plugin",
-  "publisher": "theia",
+  "publisher": "che",
   "keywords": [
     "theia-plugin"
   ],

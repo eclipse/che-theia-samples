@@ -38,13 +38,13 @@ module.exports = {
         filename: 'hello-world-frontend-plugin.js',
 
         libraryTarget: "var",
-        library: "theia_hello_world_frontend_plugin",
+        library: "che__eclipse_che_hello_world_frontend_plugin",
 
         path: path.resolve(__dirname, 'dist')
     },
     externals: {
 
-        "@theia/plugin": "theia.theia_hello_world_frontend_plugin"
+        "@theia/plugin": "theia.che__eclipse_che_hello_world_frontend_plugin"
 
     }
 };
