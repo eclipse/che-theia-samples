@@ -164,7 +164,7 @@ export class TestDataProvider implements theia.TreeDataProvider<string> {
                     id: ON_DID_SELECT_USER,
                     arguments: [element]
                 },
-
+                contextValue: 'user',
                 collapsibleState: theia.TreeItemCollapsibleState.Expanded
             });
         }
@@ -175,7 +175,8 @@ export class TestDataProvider implements theia.TreeDataProvider<string> {
             command: {
                 id: ON_DID_SELECT_COMMENT,
                 arguments: [element]
-            }
+            },
+            contextValue: 'comment'
         });
     }
 

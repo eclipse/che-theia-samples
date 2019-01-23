@@ -41,6 +41,22 @@
           "name": "TODO"
         }
       ]
+    },
+    "menus": {
+        "view/item/context" : [
+            {
+                "command": "addComment",
+                "when": "view == comments"
+            },
+            {
+                "command": "removeComment",
+                "when": "view == comments && viewItem == comment"
+            },
+            {
+                "command": "copyComment",
+                "when": "view == comments && viewItem == comment && config.terminal.enableCopy == true"
+            }
+        ]
     }
   },
   "devDependencies": {

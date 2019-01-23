@@ -28,7 +28,7 @@ export function stop() {
 
 function provideSymbols(document: theia.TextDocument): theia.ProviderResult<theia.SymbolInformation[] | theia.DocumentSymbol[]> {
     const symbols = getRanges(document, 'function start(').map(
-            r => new theia.SymbolInformation('entry point', theia.SymbolKind.Function, 'Plugin', new theia.Location(document.uri, r))
+            r => new theia.SymbolInformation('entry point', theia.SymbolKind.Constant, 'Plugin', new theia.Location(document.uri, r))
         );
     return symbols;
 }
