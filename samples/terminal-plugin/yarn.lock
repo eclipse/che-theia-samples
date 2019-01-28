@@ -13,9 +13,8 @@
     read-pkg "4.0.1"
     yargs "12.0.1"
 
-"@theia/plugin@next":
-  version "0.4.0-next.d24fbec7"
-  resolved "https://registry.yarnpkg.com/@theia/plugin/-/plugin-0.4.0-next.d24fbec7.tgz#ae6c172efb14d22270ed72b716f5961eade9b139"
+"@theia/plugin@file:../../../theia/packages/plugin":
+  version "0.3.18"
 
 "@types/events@*":
   version "1.2.0"
