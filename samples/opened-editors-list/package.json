@@ -1,11 +1,11 @@
 {
     "name": "opened-editors-list",
-    "publisher": "theia",
+    "publisher": "eclipse-che",
     "keywords": [
         "theia-plugin"
     ],
     "version": "0.0.1",
-    "license": "none",
+    "license": "EPL2.0",
     "files": [
         "src"
     ],
