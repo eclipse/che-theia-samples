@@ -12,7 +12,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: './src/opened-editor-list-frontend.ts',
+    entry: './src/opened-editors-list-frontend.ts',
     devtool: 'source-map',
     mode: 'production',
     module: {
@@ -35,16 +35,12 @@ module.exports = {
         extensions: ['.ts', '.js']
     },
     output: {
-        filename: 'opened-editor-list-frontend.js',
-        
+        filename: 'opened-editors-list-frontend.js',
         libraryTarget: "var",
-        library: "theia_opened_editor_list",
-                
+        library: "theia_opened_editors_list",
         path: path.resolve(__dirname, 'dist')
     },
     externals: {
-        
-            "@theia/plugin": "theia.theia_opened_editor_list"
-        
-	}
+        "@theia/plugin": "theia.theia_opened_editors_list"
+    }
 };

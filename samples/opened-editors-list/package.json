@@ -1,16 +1,15 @@
 {
-      "name": "opened-editor-list",
-      "publisher": "theia",
-      "keywords": [
+    "name": "opened-editors-list",
+    "publisher": "eclipse-che",
+    "keywords": [
         "theia-plugin"
-      ],
-      "version": "0.0.1",
-      "license": "none",
-
-      "files": [
+    ],
+    "version": "0.0.1",
+    "license": "EPL2.0",
+    "files": [
         "src"
-      ],
-      "devDependencies": {
+    ],
+    "devDependencies": {
         "@theia/plugin": "next",
         "@theia/plugin-packager": "latest",
         "rimraf": "2.6.2",
@@ -20,41 +19,37 @@
         "clean-webpack-plugin": "^0.1.19",
         "webpack": "^4.1.1",
         "webpack-cli": "^3.1.1"
-      },
-      "scripts": {
+    },
+    "scripts": {
         "prepare": "yarn run clean && yarn run build",
         "clean": "rimraf lib",
         "format-code": "tsfmt -r",
         "watch": "webpack-cli -w --config webpack.config.js",
         "compile": "webpack-cli --config webpack.config.js",
-
         "build": "yarn run format-code && yarn run compile && theia:plugin pack"
-      },
-      "engines": {
-        "theiaPlugin": "next"
-      },
-      "theiaPlugin": {
-
-            "frontend": "dist/opened-editor-list-frontend.js"
-
-
-      },
-       "contributes": {
-    "viewsContainers": {
-      "right": [
-        {
-          "id": "opened-editors",
-          "title": "Opened editors"
-        }
-      ]
     },
-    "views": {
-      "opened-editors": [
-        {
-          "id": "editors-tree",
-          "name": "Editors again"
+    "engines": {
+        "theiaPlugin": "next"
+    },
+    "theiaPlugin": {
+        "frontend": "dist/opened-editors-list-frontend.js"
+    },
+    "contributes": {
+        "viewsContainers": {
+            "right": [
+                {
+                    "id": "editors",
+                    "title": "Editors"
+                }
+            ]
+        },
+        "views": {
+            "editors": [
+                {
+                    "id": "opened-editors",
+                    "name": "Opened Editors"
+                }
+            ]
         }
-      ]
     }
-  }
 }
