@@ -7,13 +7,13 @@ import * as theia from '@theia/plugin';
 
 export namespace Commands {
     export const CreateTerminalWithHelpArgs: theia.Command = {
-        id: 'terminal-created-with-help-args',
-        label: 'Create terminal with help arguments.'
+        id: 'terminal-created-with-help-of-args',
+        label: 'Create terminal with help of arguments.'
     }
 
     export const CreateTerminalWithHelpOptions: theia.Command = {
-        id: 'terminal-created-with-help-options',
-        label: 'Create terminal with help options.'
+        id: 'terminal-created-with-help-of-options',
+        label: 'Create terminal with help of options.'
     }
 
     export const SendTextToTheTerminal: theia.Command = {
@@ -26,9 +26,9 @@ export namespace Commands {
         label: 'Hide terminal panel after 3 sec.'
     }
 
-    export const ShowTerminalWithDelay: theia.Command = {
-        id: 'show-terminal-with-delay',
-        label: 'Show terminal after 3 sec.'
+    export const CreateTerminalWithDelay: theia.Command = {
+        id: 'create-terminal-with-delay',
+        label: 'Create terminal after 3 sec.'
     }
 
     export const DisposeTerminal: theia.Command = {
@@ -46,19 +46,19 @@ export namespace Commands {
         label: 'Subscribe to onDidOpenTerminal event.'
     }
 
-    export const ShowTerminalList: theia.Command = {
-        id: 'show-terminal-list',
-        label: 'Show list of the terminals'
-    }
-
-    export const ShowActiveTerminal: theia.Command = {
-        id: 'show-active-terminal',
-        label: 'Track current active terminal during 10c.',
-    }
-
     export const SubscribeToOnDidChangeActiveTerminal: theia.Command = {
         id: 'subscribe-to-on-did-change-active-terminal',
-        label: 'Subscribe to on did change active terminal event.'
+        label: 'Subscribe to onDidChangeActiveTerminal event.'
+    }
+
+    export const ShowAmountOfOpenedTerminals: theia.Command = {
+        id: 'show-amount-of-opened-terminals',
+        label: 'Show amount of opened terminals.'
+    }
+
+    export const TrackActiveTerminal: theia.Command = {
+        id: 'track-active-terminal',
+        label: 'Track current active terminal during 30c.',
     }
 }
 
@@ -86,27 +86,24 @@ export function start(context: theia.PluginContext) {
         terminal.sendText('clear && echo Theia plugin terminal.\n');
     }));
 
-    context.subscriptions.push(theia.commands.registerCommand(Commands.HidePanelWithTerminal, () => {
+    context.subscriptions.push(theia.commands.registerCommand(Commands.HidePanelWithTerminal, async () => {
         const terminal = createTerminalWithOptions();
         terminal.show();
-        setTimeout(function() {
-            terminal.hide();
-        }, 3000);
+        await sleep(3000);
+        terminal.hide();
     }));
 
-    context.subscriptions.push(theia.commands.registerCommand(Commands.ShowTerminalWithDelay, () => {
+    context.subscriptions.push(theia.commands.registerCommand(Commands.CreateTerminalWithDelay, async () => {
         const terminal = createTerminalWithOptions();
-        setTimeout(function() {
-            terminal.show();
-        }, 3000);
+        await sleep(3000);
+        terminal.show();
     }));
 
-    context.subscriptions.push(theia.commands.registerCommand(Commands.DisposeTerminal, () => {
+    context.subscriptions.push(theia.commands.registerCommand(Commands.DisposeTerminal, async () => {
         const terminal = createTerminalWithOptions();
         terminal.show();
-        setTimeout(function() {
-            terminal.dispose();
-        }, 3000);
+        await sleep(3000);
+        terminal.dispose();
     }));
 
     context.subscriptions.push(theia.commands.registerCommand(Commands.SubscribeToOnDidCloseTerminalEvent, async () => {
@@ -126,15 +123,15 @@ export function start(context: theia.PluginContext) {
         console.log('Track onOpenTerminal event.');
         context.subscriptions.push(theia.window.onDidOpenTerminal(async (openedTerminal: theia.Terminal) => {
             const openedTerminalId = await openedTerminal.processId;
-            console.log('Opened terminal with id', openedTerminalId);
+            console.log('Opened terminal with id: ', openedTerminalId);
         }));
     }));
 
-    context.subscriptions.push(theia.commands.registerCommand(Commands.ShowTerminalList, () => {
+    context.subscriptions.push(theia.commands.registerCommand(Commands.ShowAmountOfOpenedTerminals, () => {
         console.log('Amount opened terminals: ', theia.window.terminals.length);
     }));
 
-    context.subscriptions.push(theia.commands.registerCommand(Commands.ShowActiveTerminal, () => {
+    context.subscriptions.push(theia.commands.registerCommand(Commands.TrackActiveTerminal, async () => {
         console.log('Begin track active terminal during 10 sec.');
         const trackActiveTerminalInterval = setInterval(async () => {
             const active = theia.window.activeTerminal;
@@ -143,12 +140,12 @@ export function start(context: theia.PluginContext) {
                 console.log('Active terminal: ', id);
             }
         }, 500);
-        setTimeout(() => {
-            console.log('Timeout. Complete track active terminal.');
-            clearInterval(trackActiveTerminalInterval)
-        }, 10000);
 
         context.subscriptions.push(theia.Disposable.create(() => { clearInterval(trackActiveTerminalInterval); }));
+
+        await sleep(30000);
+        console.log('Timeout. Complete track active terminal.');
+        clearInterval(trackActiveTerminalInterval)
     }));
 
     context.subscriptions.push(theia.commands.registerCommand(Commands.SubscribeToOnDidChangeActiveTerminal, () => {
@@ -167,6 +164,10 @@ function createTerminalWithOptions(): theia.Terminal {
         shellPath: '/bin/bash'
     }
     return theia.window.createTerminal(termOptions);
+}
+
+function sleep(milliseconds: number = 0): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));;
 }
 
 export function stop() {

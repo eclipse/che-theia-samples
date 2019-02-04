@@ -3,8 +3,8 @@
 
 
 "@theia/plugin-packager@latest":
-  version "0.0.1-1539891078"
-  resolved "https://registry.yarnpkg.com/@theia/plugin-packager/-/plugin-packager-0.0.1-1539891078.tgz#9ebfd281e655621f835bcb3a176d517ab2a5d613"
+  version "0.0.1-1548788209"
+  resolved "https://registry.yarnpkg.com/@theia/plugin-packager/-/plugin-packager-0.0.1-1548788209.tgz#c2ecf00c67f816cb6ce21e340f977b955724a481"
   dependencies:
     archiver "2.1.1"
     chalk "2.4.1"
@@ -14,8 +14,8 @@
     yargs "12.0.1"
 
 "@theia/plugin@next":
-  version "0.4.0-next.fa5810fb"
-  resolved "https://registry.yarnpkg.com/@theia/plugin/-/plugin-0.4.0-next.fa5810fb.tgz#e8b985277f90148cff30f0e596c9a5558cdef815"
+  version "0.4.0-next.f54fc5c6"
+  resolved "https://registry.yarnpkg.com/@theia/plugin/-/plugin-0.4.0-next.f54fc5c6.tgz#4af9e4f6f877ab493cf7e4d8ec06d8c917a21e32"
 
 "@types/events@*":
   version "3.0.0"
@@ -34,8 +34,8 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
 
 "@types/node@*", "@types/node@^10.11.7":
-  version "10.12.19"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.19.tgz#ca1018c26be01f07e66ac7fefbeb6407e4490c61"
+  version "10.12.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.21.tgz#7e8a0c34cf29f4e17a36e9bd0ea72d45ba03908e"
 
 "@types/semver@^5.5.0":
   version "5.5.0"
@@ -776,8 +776,8 @@ nanomatch@^1.2.9:
     to-regex "^3.0.1"
 
 normalize-package-data@^2.3.2:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.4.0.tgz#12f95a307d58352075a04907b84ac8be98ac012f"
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.4.2.tgz#6b2abd85774e51f7936f1395e45acb905dc849b2"
   dependencies:
     hosted-git-info "^2.1.4"
     is-builtin-module "^1.0.0"
