@@ -1,5 +1,5 @@
 /*********************************************************************
- * Copyright (c) 2018 Red Hat, Inc.
+ * Copyright (c) 2019 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -41,11 +41,12 @@ export class LicenseHeader {
 export function start(context: theia.PluginContext) {
     context.subscriptions.push(theia.workspace.onWillSaveTextDocument(fileSaveEvent => {
         const fileContentPromise = new Promise<void | theia.TextEdit[]>((resolve, reject) => {
-            const fileExt = path.extname(fileSaveEvent.document.uri.fsPath);
-            if (!SUPPORTED_EXTENSIONS.find((supportedExt => supportedExt === fileExt))) {
+            const document = fileSaveEvent.document;
+            const fileExt = path.extname(document.uri.fsPath);
+            if (!isSupportedValue(fileExt, SUPPORTED_EXTENSIONS)) {
                 resolve([]);
             }
-            const fileUri = fileSaveEvent.document.uri;
+            const fileUri = document.uri;
             const workspaceFolder: theia.WorkspaceFolder | theia.Uri | undefined = theia.workspace.getWorkspaceFolder(fileUri);
             let workspaceFolderUri: theia.Uri | undefined;
             if (workspaceFolder) {
@@ -57,20 +58,17 @@ export function start(context: theia.PluginContext) {
                 if (fs.existsSync(packageJsonPath)) {
                     const packageJson = require(packageJsonPath);
 
-                    if (packageJson.license && isSupportedValue(packageJson.license, SUPPORTED_LICENCE_HEADERS)) {
-                        const document = getDocument(fileSaveEvent.document.uri);
-                        if (document) {
-                            const fileText = document.getText();
+                    if (document && packageJson.license && isSupportedValue(packageJson.license, SUPPORTED_LICENCE_HEADERS)) {
+                        const fileText = document.getText();
 
-                            const textEdits: theia.TextEdit[] = [];
-                            const mitLicenceHeader = new LicenseHeader(packageJson.author, MIT_LICENSE_HEADER_CONTENT, MIT_LICENSE_HEDER_REGEXP);
+                        const textEdits: theia.TextEdit[] = [];
+                        const mitLicenceHeader = new LicenseHeader(packageJson.author, MIT_LICENSE_HEADER_CONTENT, MIT_LICENSE_HEDER_REGEXP);
 
-                            if (!mitLicenceHeader.getRegExpr().test(fileText)) {
-                                const licenceHeaderEdit = theia.TextEdit.insert(document.lineAt(0).range.start, mitLicenceHeader.getHeader());
-                                textEdits.push(licenceHeaderEdit);
-                            }
-                            resolve(textEdits);
+                        if (!mitLicenceHeader.getRegExpr().test(fileText)) {
+                            const licenceHeaderEdit = theia.TextEdit.insert(document.lineAt(0).range.start, mitLicenceHeader.getHeader());
+                            textEdits.push(licenceHeaderEdit);
                         }
+                        resolve(textEdits);
                     }
                 }
             }
@@ -83,15 +81,6 @@ export function start(context: theia.PluginContext) {
 
 function isSupportedValue(item: string, supportedElems: string[]): boolean {
     return supportedElems.findIndex((supportedElem => supportedElem === item)) >= 0;
-}
-
-function getDocument(fileUri: theia.Uri): theia.TextDocument | undefined {
-    return theia.workspace.textDocuments.find((document: theia.TextDocument) => {
-        if (document.uri === fileUri) {
-            return true;
-        }
-        return false;
-    });
 }
 
 export function stop() {
