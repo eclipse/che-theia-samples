@@ -8,6 +8,7 @@
 
 import * as theia from '@theia/plugin';
 import * as path from 'path';
+import { WebviewLocationManager } from './webview-location-manager';
 
 
 const cats = {
@@ -16,7 +17,11 @@ const cats = {
     'Testing Cat': 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
 };
 
+let pluginContext: theia.PluginContext;
+
 export function start(context: theia.PluginContext) {
+    pluginContext = context;
+    new WebviewLocationManager();
 
     context.subscriptions.push(
         theia.commands.registerCommand({
@@ -89,7 +94,7 @@ class CatCodingPanel {
         const column = theia.window.activeTextEditor ? theia.window.activeTextEditor.viewColumn : undefined;
         // If we already have a panel, show it.
         if (CatCodingPanel.currentPanel) {
-            CatCodingPanel.currentPanel._panel.reveal(column);
+            CatCodingPanel.currentPanel._panel.reveal(undefined, column);
             return;
         }
 
@@ -230,6 +235,10 @@ function getNonce() {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
+}
+
+export function getContext(): theia.PluginContext {
+    return pluginContext;
 }
 
 
