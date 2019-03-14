@@ -3,9 +3,9 @@
 
 
 "@theia/plugin-packager@latest":
-  version "0.0.1-1550255725"
-  resolved "https://registry.yarnpkg.com/@theia/plugin-packager/-/plugin-packager-0.0.1-1550255725.tgz#4a829848555e272e9102d166b3a9c74327348c72"
-  integrity sha512-cgPOkkCLv1MzkuufBfDla1C5JsbeOGTkG7nDHsFtt+o63aHjU5VDGE6x4K6p5HUYQbXVB1EOgxTXj+QW4iYr1w==
+  version "0.0.1-1551941037"
+  resolved "https://registry.yarnpkg.com/@theia/plugin-packager/-/plugin-packager-0.0.1-1551941037.tgz#859d408be29c6c910f3156ee3ad7c0eb8bfe0ab4"
+  integrity sha512-Z+7mZvDH6v001FZhulNupYHtRce5guQqJlY8p0YIvmC3fcrjx8mczEyEE65rlaCKGWeeXcK+dKR3klR+aEdi/g==
   dependencies:
     archiver "2.1.1"
     chalk "2.4.1"
@@ -16,9 +16,9 @@
     yargs "12.0.1"
 
 "@theia/plugin@next":
-  version "0.5.0-next.9d3fbed3"
-  resolved "https://registry.yarnpkg.com/@theia/plugin/-/plugin-0.5.0-next.9d3fbed3.tgz#29be703f00019ec8ed34eddf917d0e6b27e30eab"
-  integrity sha512-ZLuUC2r9y61IpzlwMtQIzK7bC04jZQAWLe17X9GxuxIzLjKZT9mdsIQWFrmZYD4WwC1RhG9dXipBJ3jMAPk/Xw==
+  version "0.5.0-next.67bc2d4e"
+  resolved "https://registry.yarnpkg.com/@theia/plugin/-/plugin-0.5.0-next.67bc2d4e.tgz#0d3a05c33cf248fc01259d1674ff761d0b858fd5"
+  integrity sha512-WNWC4EpLq3+ehb27rWcvRODjm8moC9aRxdLd/Lq/ve8jIQFk9ViQtWbzISYtgi7xtToh8qGqa6UaUM5drbICSA==
 
 "@types/events@*":
   version "3.0.0"
@@ -40,19 +40,9 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*":
-  version "11.10.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.10.4.tgz#3f5fc4f0f322805f009e00ab35a2ff3d6b778e42"
-  integrity sha512-wa09itaLE8L705aXd8F80jnFpxz3Y1/KRHfKsYL2bPc0XF+wEWu8sR9n5bmeu8Ba1N9z2GRNzm/YdHcghLkLKg==
-
-"@types/node@^10.11.7":
-  version "10.12.29"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.29.tgz#c2c8d2d27bb55649fbafe8ea1731658421f38acf"
-  integrity sha512-J/tnbnj8HcsBgCe2apZbdUpQ7hs4d7oZNTYA5bekWdP0sr2NGsOpI/HRdDroEi209tEvTcTtxhD0FfED3DhEcw==
-
-"@types/semver@^5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-5.5.0.tgz#146c2a29ee7d3bae4bf2fcb274636e264c813c45"
-  integrity sha512-41qEJgBH/TWgo5NFSvBCJ1qkoi3Q6ONSF2avrHq1LVEZfYpdHmj0y9SuTK+u9ZhG1sYQKBL1AWXKyLWP4RaUoQ==
+  version "11.11.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.3.tgz#7c6b0f8eaf16ae530795de2ad1b85d34bf2f5c58"
+  integrity sha512-wp6IOGu1lxsfnrD+5mX6qwSwWuqsdkKKxTN4aQc4wByHAKZJf9/D4KXPQ1POUjEbnCP5LMggB0OEFNY9OTsMqg==
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -399,14 +389,12 @@ define-property@^2.0.2:
     isobject "^3.0.1"
 
 editorconfig@^0.15.0:
-  version "0.15.2"
-  resolved "https://registry.yarnpkg.com/editorconfig/-/editorconfig-0.15.2.tgz#047be983abb9ab3c2eefe5199cb2b7c5689f0702"
-  integrity sha512-GWjSI19PVJAM9IZRGOS+YKI8LN+/sjkSjNyvxL5ucqP9/IqtYNXBaQ/6c/hkPNYQHyOHra2KoXZI/JVpuqwmcQ==
+  version "0.15.3"
+  resolved "https://registry.yarnpkg.com/editorconfig/-/editorconfig-0.15.3.tgz#bef84c4e75fb8dcb0ce5cee8efd51c15999befc5"
+  integrity sha512-M9wIMFx96vq0R4F+gRpY3o2exzb8hEj/n9S8unZtHSvYjibBp/iMufSzvmOcV/laG0ZtuTVGtiJggPOSW2r93g==
   dependencies:
-    "@types/node" "^10.11.7"
-    "@types/semver" "^5.5.0"
     commander "^2.19.0"
-    lru-cache "^4.1.3"
+    lru-cache "^4.1.5"
     semver "^5.6.0"
     sigmund "^1.0.1"
 
@@ -824,7 +812,7 @@ lodash@^4.17.11, lodash@^4.8.0:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
 
-lru-cache@^4.0.1, lru-cache@^4.1.3:
+lru-cache@^4.0.1, lru-cache@^4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.1.5.tgz#8bbe50ea85bed59bc9e33dcab8235ee9bcf443cd"
   integrity sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==
