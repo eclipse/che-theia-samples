@@ -183,7 +183,7 @@ export class FtpExplorer {
     public ftpModel: FtpModel;
 
     constructor(context: theia.PluginContext) {
-        this.ftpModel = new FtpModel('mirror.switch.ch', 'anonymous', 'anonymous@anonymous.de');
+        this.ftpModel = new FtpModel('ftp.redhat.com', 'anonymous', 'anonymous');
         const treeDataProvider = new FtpTreeDataProvider(this.ftpModel);
         theia.workspace.registerTextDocumentContentProvider('ftp', treeDataProvider)
 
