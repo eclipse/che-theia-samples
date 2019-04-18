@@ -15,12 +15,12 @@
         {
           "id": "remote",
           "title": "Remote",
-          "icon": "resources/stub.svg"
+          "icon": "resources/ftp-explorer.svg"
         },
         {
           "id": "comments",
           "title": "Comments",
-          "icon": "resources/stub.svg"
+          "icon": "resources/comments.svg"
         }
       ]
     },
