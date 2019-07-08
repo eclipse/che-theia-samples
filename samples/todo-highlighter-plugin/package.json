@@ -9,6 +9,9 @@
     "files": [
       "src"
     ],
+    "activationEvents": [
+      "*"
+    ],
     "devDependencies": {
       "@theia/plugin": "latest",
       "@theia/plugin-packager": "latest",

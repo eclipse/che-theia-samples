@@ -6,9 +6,12 @@
       ],
       "version": "0.0.1",
       "license": "EPL-2.0",
-      
+
       "files": [
         "src"
+      ],
+      "activationEvents": [
+        "*"
       ],
       "devDependencies": {
         "@theia/plugin": "next",
@@ -17,7 +20,7 @@
         "typescript-formatter": "7.2.2",
         "typescript": "2.9.2",
         "ts-loader": "^4.1.0",
-        "clean-webpack-plugin": "^0.1.19",        
+        "clean-webpack-plugin": "^0.1.19",
         "webpack": "^4.1.1",
         "webpack-cli": "^3.1.1"
       },
@@ -27,7 +30,7 @@
         "format-code": "tsfmt -r",
         "watch": "webpack-cli -w --config webpack.config.js",
         "compile": "webpack-cli --config webpack.config.js",
-        
+
         "build": "yarn run format-code && yarn run compile && theia:plugin pack"
       },
       "engines": {
