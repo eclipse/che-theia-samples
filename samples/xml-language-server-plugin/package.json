@@ -31,6 +31,9 @@
   "theiaPlugin": {
     "backend": "lib/xml-language-server-backend.js"
   },
+  "activationEvents": [
+    "*"
+  ],
   "contributes": {
     "languages": [
       {

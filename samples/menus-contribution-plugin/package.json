@@ -30,6 +30,9 @@
       "theiaPlugin": {
         "frontend": "lib/theia-hello-world-plugin-backend-plugin.js"
       },
+      "activationEvents": [
+        "*"
+      ],
       "contributes": {
         "menus": {
             "editor/context": [

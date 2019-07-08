@@ -11,6 +11,9 @@
     "files": [
       "src"
     ],
+    "activationEvents": [
+      "*"
+    ],
     "devDependencies": {
       "@theia/plugin": "next",
       "@theia/plugin-packager": "latest",

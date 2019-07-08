@@ -9,6 +9,9 @@
     "files": [
         "src"
     ],
+    "activationEvents": [
+        "*"
+    ],
     "contributes": {
         "languages": [
             {
