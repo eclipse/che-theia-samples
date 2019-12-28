@@ -159,6 +159,7 @@ export class TestDataProvider implements theia.TreeDataProvider<string> {
             let gitLink = gitHubProfiles.get(element);
             return Promise.resolve({
                 label: element + (gitLink ? ` [GitHub](${gitLink})` : ''),
+                tooltip: 'Click the link to open user profile',
                 iconPath: 'fa-user medium-yellow',
                 command: {
                     id: ON_DID_SELECT_USER,
