@@ -26,7 +26,7 @@
     "format-code": "tsfmt -r",
     "watch": "tsc -watch",
     "compile": "tsc",
-    "build": "yarn run format-code && yarn run compile && theia:plugin pack"
+    "build": "yarn run format-code && yarn run compile && theia-plugin pack"
   },
   "engines": {
     "theiaPlugin": "next"

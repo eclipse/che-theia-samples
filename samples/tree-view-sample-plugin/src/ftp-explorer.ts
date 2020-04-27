@@ -161,17 +161,17 @@ export class FtpTreeDataProvider implements theia.TreeDataProvider<FtpNode>, the
     }
 }
 
-const ftpExplorerRefresh: theia.Command = {
+const ftpExplorerRefresh: theia.CommandDescription = {
     id: 'ftpExplorer.refresh',
     label: 'FTP: Refresh'
 };
 
-const ftpExplorerOpenFtpResource: theia.Command = {
+const ftpExplorerOpenFtpResource: theia.CommandDescription = {
     id: 'ftpExplorer.openFtpResource',
     label: 'FTP: Open Resource'
 };
 
-const ftpExplorerRevealResource: theia.Command = {
+const ftpExplorerRevealResource: theia.CommandDescription = {
     id: 'ftpExplorer.revealResource',
     label: 'FTP: Reveal in View'
 };

@@ -6,57 +6,57 @@
 import * as theia from '@theia/plugin';
 
 export namespace Commands {
-    export const CreateTerminalWithHelpArgs: theia.Command = {
+    export const CreateTerminalWithHelpArgs: theia.CommandDescription = {
         id: 'terminal-created-with-help-of-args',
         label: 'Create terminal with help of arguments.'
     }
 
-    export const CreateTerminalWithHelpOptions: theia.Command = {
+    export const CreateTerminalWithHelpOptions: theia.CommandDescription = {
         id: 'terminal-created-with-help-of-options',
         label: 'Create terminal with help of options.'
     }
 
-    export const SendTextToTheTerminal: theia.Command = {
+    export const SendTextToTheTerminal: theia.CommandDescription = {
         id: 'send-text-to-the-terminal',
         label: 'Send text to the terminal.'
     }
 
-    export const HidePanelWithTerminal: theia.Command = {
+    export const HidePanelWithTerminal: theia.CommandDescription = {
         id: 'hide-terminal-panel',
         label: 'Hide terminal panel after 3 sec.'
     }
 
-    export const CreateTerminalWithDelay: theia.Command = {
+    export const CreateTerminalWithDelay: theia.CommandDescription = {
         id: 'create-terminal-with-delay',
         label: 'Create terminal after 3 sec.'
     }
 
-    export const DisposeTerminal: theia.Command = {
+    export const DisposeTerminal: theia.CommandDescription = {
         id: 'dispose-terminal',
         label: 'Dispose terminal after 3 sec.'
     }
 
-    export const SubscribeToOnDidCloseTerminalEvent: theia.Command = {
+    export const SubscribeToOnDidCloseTerminalEvent: theia.CommandDescription = {
         id: 'subscribe-on-did-close-terminal-event',
         label: 'Subscribe to onDidCloseTerminal event.'
     }
 
-    export const SubcribeToOnDidOpenTerminalEvent: theia.Command = {
+    export const SubcribeToOnDidOpenTerminalEvent: theia.CommandDescription = {
         id: 'subscribe-on-did-open-terminal-even',
         label: 'Subscribe to onDidOpenTerminal event.'
     }
 
-    export const SubscribeToOnDidChangeActiveTerminal: theia.Command = {
+    export const SubscribeToOnDidChangeActiveTerminal: theia.CommandDescription = {
         id: 'subscribe-to-on-did-change-active-terminal',
         label: 'Subscribe to onDidChangeActiveTerminal event.'
     }
 
-    export const ShowAmountOfOpenedTerminals: theia.Command = {
+    export const ShowAmountOfOpenedTerminals: theia.CommandDescription = {
         id: 'show-amount-of-opened-terminals',
         label: 'Show amount of opened terminals.'
     }
 
-    export const TrackActiveTerminal: theia.Command = {
+    export const TrackActiveTerminal: theia.CommandDescription = {
         id: 'track-active-terminal',
         label: 'Track current active terminal during 30c.',
     }

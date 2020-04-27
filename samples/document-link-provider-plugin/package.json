@@ -30,7 +30,7 @@
         "format-code": "tsfmt -r",
         "watch": "webpack-cli -w --config webpack.config.js",
         "compile": "webpack-cli --config webpack.config.js",
-        "build": "yarn run format-code && yarn run compile && theia:plugin pack"
+        "build": "yarn run format-code && yarn run compile && theia-plugin pack"
       },
       "engines": {
         "theiaPlugin": "next"
